@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idioms & Phrases Practice - Road To Bank Career With Jheel</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #334155;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #f8fafc;
+        }
+
+        header h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #93c5fd;
+            margin-bottom: 0.8rem;
+        }
+
+        .creator-tag {
+            background: rgba(255,255,255,0.15);
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary-light);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* List View */
+        .idiom-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--primary-light);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .idiom-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .idiom-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .idiom-num {
+            background: #eff6ff;
+            color: var(--primary);
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .idiom-meaning {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.4rem;
+        }
+
+        .idiom-sentence {
+            font-style: italic;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Flashcard View */
+        .flashcard-container {
+            perspective: 1000px;
+            max-width: 500px;
+            margin: 2rem auto;
+            height: 250px;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border-radius: 12px;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: #f0f9ff;
+            border-color: var(--primary-light);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background: var(--secondary);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: #f1f5f9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Road To Bank Career With Jheel</h1>
+        <h2>Chapter 30: Idioms & Phrases Practice Portal</h2>
+        <div class="creator-tag">Collected & created by Araf Hasan Jheel (SO, ICB)</div>
+    </header>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('list')">All Idioms (1-180)</button>
+            <button class="tab-btn" onclick="switchTab('flashcard')">Flashcards Practice</button>
+        </div>
+
+        <!-- LIST TAB -->
+        <div id="list-tab" class="tab-content active">
+            <input type="text" id="search" class="search-box" placeholder="Search idioms or Bengali meaning..." onkeyup="filterIdioms()">
+            <div id="idiom-list"></div>
+        </div>
+
+        <!-- FLASHCARD TAB -->
+        <div id="flashcard-tab" class="tab-content">
+            <div style="text-align:center; font-weight:600;" id="card-progress">Card 1 of 180</div>
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="card-face card-front">
+                        <h2 id="card-idiom" style="color:var(--primary);">ABC</h2>
+                        <p style="margin-top:1rem; color:#94a3b8; font-size:0.85rem;">(Click to see meaning)</p>
+                    </div>
+                    <div class="card-face card-back">
+                        <div class="idiom-meaning" id="card-meaning">(primary knowledge, প্রাথমিক জ্ঞান)</div>
+                        <div class="idiom-sentence" id="card-sentence">He does not know even the ABC of music.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="prevCard()">Previous</button>
+                <button class="btn" onclick="nextCard()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Page: Road To Bank Career With Jheel</strong></p>
+        <p>Collected & created by Araf Hasan Jheel (SO, ICB)</p>
+    </footer>
+
+    <script>
+        const idioms = [
+            {sl: 1, text: "ABC", meaning: "(primary knowledge, প্রাথমিক জ্ঞান)", sentence: "He does not know even the ABC of music."},
+            {sl: 2, text: "Above all", meaning: "(more than anything else, সর্বোপরি)", sentence: "Above all, be careful of your health."},
+            {sl: 3, text: "Above board", meaning: "(beyond doubt, সংশয়হীনভাবে নির্দোষ)", sentence: "His activities are open and above board."},
+            {sl: 4, text: "Achilles' heel", meaning: "(weak point, দুর্বলতা বা ত্রুটি)", sentence: "Hankering for votes is the Achilles' heel of the so-called leaders of our country."},
+            {sl: 5, text: "After all", meaning: "(in spite of everything, সব কিছু সত্ত্বেও)", sentence: "After all, he is a patriot."},
+            {sl: 6, text: "All at once", meaning: "(suddenly, হঠাৎ)", sentence: "All at once a tiger came out of the forest."},
+            {sl: 7, text: "All on (of) a sudden", meaning: "(suddenly, হঠাৎ)", sentence: "All on (of) a sudden a tiger came out of the bush."},
+            {sl: 8, text: "All but", meaning: "(nearly, প্রায়)", sentence: "The poor villagers are all but ruined."},
+            {sl: 9, text: "All in all", meaning: "(supreme, সর্বেসর্বা)", sentence: "Mr. Sen is all in all in his office."},
+            {sl: 10, text: "Apple of discord", meaning: "(matter of dispute, বিবাদের বিষয়)", sentence: "The paternal property has become an apple of discord between the two brothers."},
+            {sl: 11, text: "As if", meaning: "(as it would be, যেন)", sentence: "He swims so beautifully as if he is the water-god."},
+            {sl: 12, text: "As it were", meaning: "(like, যেন)", sentence: "The sun is, as it were, the lamp of the universe."},
+            {sl: 13, text: "As usual", meaning: "(habitually, যথারীতি)", sentence: "He is late as usual."},
+            {sl: 14, text: "At a loss", meaning: "(puzzled, হতবুদ্ধি, কিংকর্তব্যবিমূঢ়)", sentence: "He was at a loss and did not know what to do."},
+            {sl: 15, text: "At all", meaning: "(primarily, আদৌ)", sentence: "He does not know French at all."},
+            {sl: 16, text: "At all events", meaning: "(in all cases, যাই ঘটুক সব ক্ষেত্রেই)", sentence: "I shall stand by him at all events."},
+            {sl: 17, text: "At a low ebb", meaning: "(declining, নিম্নমুখী)", sentence: "His fame is at a low ebb now."},
+            {sl: 18, text: "At arm's length", meaning: "(at a distance, দূরে)", sentence: "Try to keep the bad boy at arm's length."},
+            {sl: 19, text: "At a stretch", meaning: "(without break, একটানা)", sentence: "He can run ten miles at a stretch."},
+            {sl: 20, text: "At bay", meaning: "(in a tight corner, কোণঠাসা)", sentence: "The tiger was at bay in the bush."},
+            {sl: 21, text: "At one's finger ends", meaning: "(ready at hand, নখদর্পণে)", sentence: "All these facts are at his finger ends."},
+            {sl: 22, text: "At daggers drawn", meaning: "(at enmity, খড়্গহস্ত)", sentence: "The two brothers are now at daggers drawn."},
+            {sl: 23, text: "At home", meaning: "(skilled, comfortable, দক্ষ, ঘরের মতো আরামপ্রদ)", sentence: "He is at home in Mathematics. (or) I feel at home in your house."},
+            {sl: 24, text: "At large", meaning: "(free, স্বাধীন)", sentence: "The anti-socials are still at large."},
+            {sl: 25, text: "At last", meaning: "(in the long run, অবশেষে)", sentence: "I got my missing book at last."},
+            {sl: 26, text: "At least", meaning: "(at the lowest, অন্তত)", sentence: "At least one hundred boys will come to school today."},
+            {sl: 27, text: "At one's wit's end", meaning: "(puzzled, হতবুদ্ধি)", sentence: "He was at his wit's end and did not know what to do."},
+            {sl: 28, text: "At random", meaning: "(without any aim, বেপরোয়া বা এলোমেলো)", sentence: "He hit the ball at random."},
+            {sl: 29, text: "At sixes and sevens", meaning: "(scattered, বিশৃঙ্খলা অবস্থায়)", sentence: "All the furniture in the room were at sixes and sevens."},
+            {sl: 30, text: "At stake", meaning: "(in danger, বিপন্ন)", sentence: "His life is at stake now."},
+            {sl: 31, text: "At one's back and call", meaning: "(obedient, বাধ্য)", sentence: "He is always at my beck and call."},
+            {sl: 32, text: "At one's own sweet will", meaning: "(according to his wishes, খুশি মতো)", sentence: "He still does it at his own sweet will."},
+            {sl: 33, text: "At the eleventh hour", meaning: "(at the last moment, শেষ মুহূর্তে)", sentence: "The doctor came to the patient at the eleventh hour."},
+            {sl: 34, text: "Bad blood", meaning: "(ill feeling, মনকষাকষি)", sentence: "Now there is bad blood between the two brothers."},
+            {sl: 35, text: "Bag and baggage", meaning: "(with all belongings, তল্পিতল্পাসহ)", sentence: "He left the place bag and baggage."},
+            {sl: 36, text: "Beat about the bush", meaning: "(talk irrelevantly, কাজের কথায় না এসে বাজে কথা বলা)", sentence: "Please come to the point without beating about the bush."},
+            {sl: 37, text: "Bed of roses", meaning: "(comfortable condition, আরামদায়ক অবস্থা)", sentence: "Life is not a bed of roses."},
+            {sl: 38, text: "Birds of a feather", meaning: "(persons of similar nature, একরকম স্বভাবের লোক)", sentence: "Birds of a feather flock together."},
+            {sl: 39, text: "Beat black and blue", meaning: "(beat severely, প্রচণ্ড প্রহার করা)", sentence: "They beat the thief black and blue."},
+            {sl: 40, text: "Black sheep", meaning: "(person of bad character, কুলাঙ্গার)", sentence: "He is a black sheep in his family."},
+            {sl: 41, text: "Beggar description", meaning: "(cannot be described, বর্ণনা করা যায় না)", sentence: "The beauty of the Taj beggars description."},
+            {sl: 42, text: "A bolt from the blue", meaning: "(something quite unexpected, সম্পূর্ণ অপ্রত্যাশিত)", sentence: "The news of his father's death came as a bolt from the blue."},
+            {sl: 43, text: "By all means", meaning: "(in all possible ways, সর্বপ্রકારે)", sentence: "Try to do it by all means."},
+            {sl: 44, text: "By and by", meaning: "(soon, শীঘ্রই)", sentence: "He will come here by and by."},
+            {sl: 45, text: "By the bye", meaning: "(in course of talking, প্রসঙ্গক্রমে)", sentence: "By the bye I came to know that he was ill."},
+            {sl: 46, text: "By chance", meaning: "(by accident, দৈবাৎ)", sentence: "I met him on the way by chance."},
+            {sl: 47, text: "By fits and starts", meaning: "(irregularly, অনিয়মিতভাবে, মাঝে মাঝে)", sentence: "He works by fits and starts."},
+            {sl: 48, text: "By no means", meaning: "(in no way, কোন ভাবেই না)", sentence: "I shall by no means call on him."},
+            {sl: 49, text: "By hook or by crook", meaning: "(by fair means or foul, যে কোন উপায়ে)", sentence: "You must do this work by hook or by crook."},
+            {sl: 50, text: "By far", meaning: "(in all respects, সর্বাংশে)", sentence: "He is by far the best boy in the class."},
+            {sl: 51, text: "By leaps and bounds", meaning: "(very rapidly, অতি দ্রুতগতিতে)", sentence: "The population is increasing by leaps and bounds."},
+            {sl: 52, text: "By and large", meaning: "(mostly, প্রধানতঃ)", sentence: "People in our village are by and large farmers."},
+            {sl: 53, text: "Bid fair", meaning: "(have the possibility of prospering, ভালো কিছু আশা করা)", sentence: "He bids fair to be a good doctor."},
+            {sl: 54, text: "Big gun", meaning: "(a leading man, নেতৃত্বস্থানীয় ব্যক্তি)", sentence: "He is a big gun of our locality."},
+            {sl: 55, text: "Bird's eye view", meaning: "(a rough idea, মোটামুটি ধারণা)", sentence: "He took a bird's eye view of the flood area."},
+            {sl: 56, text: "Bone of contention", meaning: "(matter of dispute, বিবাদের বিষয়)", sentence: "Property is the bone of contention between them."},
+            {sl: 57, text: "Book worm", meaning: "(one who reads books only, গ্রন্থকীট)", sentence: "Don't be a book worm."},
+            {sl: 58, text: "Bosom friend", meaning: "(intimate friend, অন্তরঙ্গ বন্ধু)", sentence: "Salil is my bosom friend."},
+            {sl: 59, text: "Bring to light", meaning: "(make open, প্রকাশ করা)", sentence: "At last all the facts were brought to light."},
+            {sl: 60, text: "Bring to book", meaning: "(punish, শাস্তি দেওয়া)", sentence: "He should be brought to book for his misconduct."},
+            {sl: 61, text: "Build castles in the air", meaning: "(indulge in idle vision, আকাশ কুসুম রচনা করা)", sentence: "Don't idle away your time in building castles in the air."},
+            {sl: 62, text: "Burning question", meaning: "(matter of strong debate, তীব্র বিতর্কের বিষয়)", sentence: "The dowry system is the burning question of the day."},
+            {sl: 63, text: "Breathe one's last", meaning: "(die, মারা যাওয়া)", sentence: "The old man breathed his last on Sunday."},
+            {sl: 64, text: "Call to mind", meaning: "(remember, স্মরণ করা)", sentence: "I cannot call to mind your name."},
+            {sl: 65, text: "Call in question", meaning: "(doubt, সন্দেহ করা)", sentence: "No one can call his honesty in question."},
+            {sl: 66, text: "Call a spade a spade", meaning: "(to speak plainly, অপ্রিয় সত্য কথা বলা)", sentence: "I have no hesitation to call a spade a spade."},
+            {sl: 67, text: "Carry the day", meaning: "(win victory, জয়লাভ করা)", sentence: "Amal carried the day in the annual sports."},
+            {sl: 68, text: "Catch red handed", meaning: "(catch with stolen articles, হাতে নাতে ধরা)", sentence: "The thief was caught red-handed."},
+            {sl: 69, text: "Cats and dogs", meaning: "(heavily, মুষল ধারে)", sentence: "It was raining cats and dogs."},
+            {sl: 70, text: "Chip of the old block", meaning: "(a worthy son, বাপকা বেটা)", sentence: "He is a chip of the old block."},
+            {sl: 71, text: "Cock and bull story", meaning: "(absurd story, গাঁজাখুরি গল্প)", sentence: "Who will believe your cock and bull story?"},
+            {sl: 72, text: "Crying need", meaning: "(urgent need, জরুরী প্রয়োজন)", sentence: "Education is the crying need of our country."},
+            {sl: 73, text: "Crocodile tears", meaning: "(pretended cry, মায়া কান্না)", sentence: "He shed crocodile tears at our misery."},
+            {sl: 74, text: "Come to light", meaning: "(become known, প্রকাশিত হওয়া)", sentence: "Their private talk has come to light at last."},
+            {sl: 75, text: "Come off with flying colours", meaning: "(win a victory, জয়লাভ করা)", sentence: "Our team came off with flying colours."},
+            {sl: 76, text: "Curry favour", meaning: "(be favourite through flattery, তোষামোদ করিয়া প্রিয় হওয়া)", sentence: "He knows how to curry favour with officers."},
+            {sl: 77, text: "Cut a sorry figure", meaning: "(make bad results, খারাপ ফল করা)", sentence: "He cuts a sorry figure in the examination."},
+            {sl: 78, text: "Cut to the quick", meaning: "(be hurt, মর্মাহত হওয়া)", sentence: "I was cut to the quick by his words."},
+            {sl: 79, text: "Dead against", meaning: "(bitterly against, তীব্র বিরোধী)", sentence: "I am dead against his proposal."},
+            {sl: 80, text: "Dead language", meaning: "(language no longer in use, অচলিত ভাষা)", sentence: "Sanskrit is now a dead language."},
+            {sl: 81, text: "Dead of night", meaning: "(mid night, মধ্য রাত্রি)", sentence: "The robbers broke in at dead of night."},
+            {sl: 82, text: "Die in harness", meaning: "(die while in service, কর্মরত অবস্থায় মারা যাওয়া)", sentence: "Dr. Sen died in harness."},
+            {sl: 83, text: "Do yeoman's service", meaning: "(render valuable service, বিশেষ উপকার করা)", sentence: "He has done yeoman's service to our country."},
+            {sl: 84, text: "End in smoke", meaning: "(fail, ব্যর্থ হওয়া)", sentence: "All his plans ended in smoke."},
+            {sl: 85, text: "Fall flat", meaning: "(have no effect, ফলপ্রসূ না হওয়া)", sentence: "My advice fell flat on him."},
+            {sl: 86, text: "Fight shy", meaning: "(avoid, এড়িয়ে চলা)", sentence: "Why do you fight shy of your teacher?"},
+            {sl: 87, text: "Fish out of water", meaning: "(uneasy situation, অস্বস্তিকর অবস্থায়)", sentence: "He felt like a fish out of water."},
+            {sl: 88, text: "Fish in a troubled water", meaning: "(take advantage, সুযোগ নেওয়া)", sentence: "He made money by fishing in a troubled water."},
+            {sl: 89, text: "Far and wide", meaning: "(everywhere, সর্বত্র)", sentence: "His fame spread far and wide."},
+            {sl: 90, text: "Flesh and blood", meaning: "(human body, রক্তমাংসের শরীর)", sentence: "Flesh and blood cannot bear such insults."},
+            {sl: 91, text: "For good", meaning: "(forever, চিরকালের জন্য)", sentence: "He left the country for good."},
+            {sl: 92, text: "From hand to mouth", meaning: "(live by hard labour, দিন আনে দিন খায়)", sentence: "The poor man lives from hand to mouth."},
+            {sl: 93, text: "From A to Z", meaning: "(beginning to end, প্রথম হইতে শেষ পর্যন্ত)", sentence: "The statement is true from A to Z."},
+            {sl: 94, text: "Gala day", meaning: "(day of festivity, উৎসবের দিন)", "sentence": "15th August is a gala day."},
+            {sl: 95, text: "Get rid of", meaning: "(be free from, মুক্তি পাওয়া)", sentence: "Try to get rid of that rogue."},
+            {sl: 96, text: "Gift of the gab", meaning: "(power of speech, বাকপটুতা)", sentence: "An advocate should have the gift of the gab."},
+            {sl: 97, text: "Hard and fast", meaning: "(rigid, বাঁধা ধরা)", sentence: "There is no hard and fast rule here."},
+            {sl: 98, text: "Hard nut to crack", meaning: "(difficult problem, কঠিন সমস্যা)", sentence: "This issue is a hard nut to crack."},
+            {sl: 99, text: "Head and ears", meaning: "(complete, সম্পূর্ণরূপে)", sentence: "He is over head and ears in debt."},
+            {sl: 100, text: "Heart and soul", meaning: "(with all energy, সর্বান্তঃকরণে)", sentence: "Try heart and soul and you will succeed."},
+            {sl: 101, text: "Hold water", meaning: "(be effective, ধোপে টেকা)", sentence: "This policy will not hold water."},
+            {sl: 102, text: "Hold good", meaning: "(apply, প্রযুক্ত হওয়া)", sentence: "This rule will hold good here."},
+            {sl: 103, text: "Hue and cry", meaning: "(a noise, শোরগোল)", sentence: "The villagers raised a hue and cry."},
+            {sl: 104, text: "Hush money", meaning: "(bribe, ঘুষ)", sentence: "He offered hush money to suppress it."},
+            {sl: 105, text: "Household word", meaning: "(familiar name, সকলের পরিচিত নাম)", sentence: "Her name is now a household word."},
+            {sl: 106, text: "In a fix", meaning: "(difficult position, মুশকিলে পতিত)", sentence: "He is in a fix now."},
+            {sl: 107, text: "In fine", meaning: "(in conclusion, পরিশেষে)", sentence: "In fine he declared his plan."},
+            {sl: 108, text: "In full swing", meaning: "(full activity, পুরোদমে)", sentence: "The school is now in full swing."},
+            {sl: 109, text: "In time", meaning: "(proper time, ঠিক সময়ে)", sentence: "He reached the station in time."},
+            {sl: 110, text: "In order to", meaning: "(with object of, উদ্দেশ্যে)", sentence: "He came here in order to meet me."},
+            {sl: 111, text: "In lieu of", meaning: "(instead of, পরিবর্তে)", sentence: "Give me this pen in lieu of that."},
+            {sl: 112, text: "In black and white", meaning: "(in writing, লিখিতভাবে)", sentence: "Put it down in black and white."},
+            {sl: 113, text: "In cold blood", meaning: "(without provocation, ঠান্ডা মাথায়)", sentence: "They committed murder in cold blood."},
+            {sl: 114, text: "In no time", meaning: "(soon, শীঘ্রই)", sentence: "He will finish the work in no time."},
+            {sl: 115, text: "In the nick of time", meaning: "(right time, ঠিক সময়ে)", sentence: "They arrived in the nick of time."},
+            {sl: 116, text: "Ins and outs", meaning: "(full details, খুঁটিনাটি সব কিছু)", sentence: "I know the ins and outs of the matter."},
+            {sl: 117, text: "In vogue", meaning: "(in fashion, চালু)", sentence: "This custom is not in vogue now."},
+            {sl: 118, text: "In force", meaning: "(in activity, বলবৎ)", sentence: "This law is in force now."},
+            {sl: 119, text: "In a nut shell", meaning: "(briefly, খুব সংক্ষেপে)", sentence: "Tell the story in a nut shell."},
+            {sl: 120, text: "In a hurry", meaning: "(very quickly, তাড়াহুড়ার মধ্যে)", sentence: "Don't do the work in a hurry."},
+            {sl: 121, text: "In the mean time", meaning: "(meantime, ইতিমধ্যে)", sentence: "Get the room ready in the mean time."},
+            {sl: 122, text: "In one's teens", meaning: "(13-19 years age, ১৩-১৯ বছর বয়সের মধ্যে)", sentence: "She is yet in her teens."},
+            {sl: 123, text: "In the long run", meaning: "(ultimately, পরিশেষে)", sentence: "You will suffer in the long run."},
+            {sl: 124, text: "In vain", meaning: "(fruitless, বৃথা)", sentence: "All his attempts were in vain."},
+            {sl: 125, text: "Irony of fate", meaning: "(bad luck, ভাগ্যের পরিহাস)", sentence: "He failed by irony of fate."},
+            {sl: 126, text: "Lion's share", meaning: "(major part, সিংহভাগ)", sentence: "He took the lion's share."},
+            {sl: 127, text: "Lame excuse", meaning: "(bad plea, বাজে অজুহাত)", sentence: "This lame excuse will not do."},
+            {sl: 128, text: "Kith and kin", meaning: "(near relatives, নিকট আত্মীয়)", sentence: "He has no relation with kith and kin."},
+            {sl: 129, text: "Maiden speech", meaning: "(first speech, প্রথম বক্তৃতা)", sentence: "His maiden speech fell flat."},
+            {sl: 130, text: "Man of letters", meaning: "(scholar, পণ্ডিত লোক)", sentence: "He was a man of letters."},
+            {sl: 131, text: "Man of straw", meaning: "(worthless man, অপদার্থ লোক)", sentence: "We don't care for a man of straw."},
+            {sl: 132, text: "Make both ends meet", meaning: "(live within income, আয়ব্যয় মেলানো)", sentence: "I cannot make both ends meet."},
+            {sl: 133, text: "Moot point", meaning: "(undecided matter, অমিমাংসিত বিষয়)", sentence: "It is still a moot point."},
+            {sl: 134, text: "Nip in the bud", meaning: "(destroy at initial, অঙ্কুরে বিনষ্ট করা)", sentence: "His hopes were nipped in the bud."},
+            {sl: 135, text: "Null and void", meaning: "(invalid, বাতিল)", sentence: "The deed is null and void."},
+            {sl: 136, text: "Now and then", meaning: "(occasionally, মাঝে মাঝে)", sentence: "He comes here now and then."},
+            {sl: 137, text: "Of course", meaning: "(certainly, অবশ্যই)", sentence: "Of course, I know what it means."},
+            {sl: 138, text: "On the contrary", meaning: "(just opposite, বিপরীত পক্ষে)", sentence: "On the contrary, I love him."},
+            {sl: 139, text: "On the wane", meaning: "(declining, হ্রাসেরমান)", sentence: "His fame is on the wane now."},
+            {sl: 140, text: "On the whole", meaning: "(generally, মোটের উপর)", sentence: "On the whole, his conduct is good."},
+            {sl: 141, text: "On the spur of the moment", meaning: "(impulse of moment, মুহূর্তের উত্তেজনায়)", sentence: "He did it on the spur of the moment."},
+            {sl: 142, text: "Out of date", meaning: "(out of fashion, অচলিত)", sentence: "This style is out of date."},
+            {sl: 143, text: "Out of the wood", meaning: "(free from danger, বিপদমুক্ত)", sentence: "He is not yet out of the wood."},
+            {sl: 144, text: "Out of doors", meaning: "(outside, বাহিরে)", sentence: "It is cold out of doors."},
+            {sl: 145, text: "Out of sorts", meaning: "(unwell, ঈষৎ অসুস্থ)", sentence: "He is out of sorts today."},
+            {sl: 146, text: "Out of order", meaning: "(defective, বিকল)", sentence: "The car is out of order."},
+            {sl: 147, text: "Out of temper", meaning: "(angry, ক্রুদ্ধ)", sentence: "He is out of temper now."},
+            {sl: 148, text: "Part and parcel", meaning: "(integral part, অবিচ্ছেদ্য অংশ)", sentence: "Discipline is part and parcel of work."},
+            {sl: 149, text: "Pros and cons", meaning: "(details, খুঁটিনাটি)", sentence: "Consider the pros and cons."},
+            {sl: 150, text: "Rank and file", meaning: "(common men, সাধারণ লোক)", sentence: "Pay attention to the rank and file."},
+            {sl: 151, text: "Red letter day", meaning: "(memorable day, স্মরণীয় দিন)", sentence: "15th August is a red letter day."},
+            {sl: 152, text: "Red tape", meaning: "(official formalities, আমলাতান্ত্রিকতা)", sentence: "Red tape causes unnecessary delay."},
+            {sl: 153, text: "Read between the lines", meaning: "(understand significance, তাৎপর্য বোঝা)", sentence: "Try to read between the lines."},
+            {sl: 154, text: "Round the clock", meaning: "(24 hours, সমস্ত দিন)", sentence: "He works round the clock."},
+            {sl: 155, text: "Set free", meaning: "(liberate, মুক্ত করা)", sentence: "The prisoner was set free."},
+            {sl: 156, text: "Slow coach", meaning: "(lazy person, অলস প্রকৃতির লোক)", sentence: "Don't expect much from a slow coach."},
+            {sl: 157, text: "Slip of the pen", meaning: "(slight writing mistake, লেখায় সামান্য ভুল)", sentence: "It was due to a slip of the pen."},
+            {sl: 158, text: "Slip of the tongue", meaning: "(slight speaking mistake, বলায় সামান্য ভুল)", sentence: "It was just a slip of the tongue."},
+            {sl: 159, text: "Square meal", meaning: "(full meal, পেট ভরা আহার)", sentence: "He cannot afford a square meal."},
+            {sl: 160, text: "Steer clear of", meaning: "(avoid, এড়িয়ে চলা)", sentence: "Steer clear of bad company."},
+            {sl: 161, text: "Stone's throw", meaning: "(very close, অতি নিকটে)", sentence: "Our school is at a stone's throw."},
+            {sl: 162, text: "Take to heart", meaning: "(be hurt, মর্মাহত হওয়া)", sentence: "He took the remark to heart."},
+            {sl: 163, text: "Take to one's heels", meaning: "(run away, ছুটিয়া পালানো)", sentence: "The thief took to his heels."},
+            {sl: 164, text: "Three R's", meaning: "(elementary education, প্রাথমিক শিক্ষা)", sentence: "Many lack knowledge of the three R's."},
+            {sl: 165, text: "To and fro", meaning: "(back and forth, এদিক-ওদিক)", sentence: "He is walking to and fro."},
+            {sl: 166, text: "Take one to task", meaning: "(rebuke, তিরস্কার করা)", sentence: "He was taken to task for negligence."},
+            {sl: 167, text: "Tooth and nail", meaning: "(strongly, তীব্রভাবে)", sentence: "He fought tooth and nail."},
+            {sl: 168, text: "Through thick and thin", meaning: "(all difficulties, বাধা বিপত্তির মধ্য দিয়ে)", sentence: "She supported him through thick and thin."},
+            {sl: 169, text: "To the backbone", meaning: "(to the core, হাড়ে হাড়ে)", sentence: "The boy is wicked to the backbone."},
+            {sl: 170, text: "To the contrary", meaning: "(against statement, বক্তব্যের বিপক্ষে)", sentence: "He said nothing to the contrary."},
+            {sl: 171, text: "To the letter", meaning: "(in all details, অক্ষরে অক্ষরে)", sentence: "He followed rules to the letter."},
+            {sl: 172, text: "Turn over a new leaf", meaning: "(new phase of life, নতুনের সূচনা)", sentence: "He turned over a new leaf."},
+            {sl: 173, text: "Turn a deaf ear to", meaning: "(pay no attention, মনোযোগ না দেওয়া)", sentence: "He turned a deaf ear to my request."},
+            {sl: 174, text: "Turn down", meaning: "(refuse, প্রত্যাখ্যান করা)", sentence: "He turned down the offer."},
+            {sl: 175, text: "Up and doing", meaning: "(active, উদ্যোগী)", sentence: "Be up and doing to succeed."},
+            {sl: 176, text: "Ups and downs", meaning: "(rise and fall, উত্থানপতন)", sentence: "Life has its ups and downs."},
+            {sl: 177, text: "White elephant", meaning: "(costly unprofitable thing, ব্যয়বহুল নিষ্ফল কাজ)", sentence: "The project proved to be a white elephant."},
+            {sl: 178, text: "Weal and woe", meaning: "(joy and sorrow, সুখ-দুঃখ)", sentence: "Life is full of weal and woe."},
+            {sl: 179, text: "Wild goose chase", meaning: "(useless pursuit, পণ্ডশ্রম)", sentence: "Don't waste time in a wild goose chase."},
+            {sl: 180, text: "Widow's mite", meaning: "(small contribution, দরিদ্রের ক্ষুদ্র দান)", sentence: "Every widow's mite helps the fund."}
+        ];
+
+        let currentCardIndex = 0;
+
+        function renderList(items) {
+            const listContainer = document.getElementById('idiom-list');
+            listContainer.innerHTML = '';
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'idiom-card';
+                card.innerHTML = `
+                    <div class="idiom-header">
+                        <span class="idiom-title">${item.text}</span>
+                        <span class="idiom-num">#${item.sl}</span>
+                    </div>
+                    <div class="idiom-meaning">${item.meaning}</div>
+                    <div class="idiom-sentence">Ex: "${item.sentence}"</div>
+                `;
+                listContainer.appendChild(card);
+            });
+        }
+
+        function filterIdioms() {
+            const query = document.getElementById('search').value.toLowerCase();
+            const filtered = idioms.filter(i => 
+                i.text.toLowerCase().includes(query) || 
+                i.meaning.toLowerCase().includes(query)
+            );
+            renderList(filtered);
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            if(tab === 'list') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('list-tab').classList.add('active');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('flashcard-tab').classList.add('active');
+                updateCard();
+            }
+        }
+
+        function updateCard() {
+            const card = idioms[currentCardIndex];
+            document.getElementById('flashcard').classList.remove('flipped');
+            document.getElementById('card-idiom').innerText = card.text;
+            document.getElementById('card-meaning').innerText = card.meaning;
+            document.getElementById('card-sentence').innerText = `Ex: "${card.sentence}"`;
+            document.getElementById('card-progress').innerText = `Card ${currentCardIndex + 1} of ${idioms.length}`;
+        }
+
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+        }
+
+        function nextCard() {
+            if(currentCardIndex < idioms.length - 1) {
+                currentCardIndex++;
+                updateCard();
+            }
+        }
+
+        function prevCard() {
+            if(currentCardIndex > 0) {
+                currentCardIndex--;
+                updateCard();
+            }
+        }
+
+        // Initialize List
+        renderList(idioms);
+    </script>
+</body>
+</html>
