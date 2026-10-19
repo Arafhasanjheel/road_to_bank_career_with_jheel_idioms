@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লেখায় প্রফেশনাল ভাব আনতে প্রয়োজনীয় ১০০ শব্দ</title>
+    <!-- Fonts & Tailwind CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            min-height: 100vh;
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-input {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="py-8 px-4 sm:px-6 lg:px-8">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-emerald-500 text-white px-5 py-3 rounded-xl shadow-2xl transition-all duration-300 opacity-0 transform translate-y-10 pointer-events-none z-50 flex items-center space-x-2 font-medium text-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <span id="toastMsg">কপি করা হয়েছে!</span>
+    </div>
+
+    <div class="max-w-4xl mx-auto space-y-6">
+
+        <!-- Header -->
+        <header class="glass-card rounded-3xl p-6 sm:p-10 text-center space-y-4 shadow-2xl relative overflow-hidden">
+            <span class="inline-block px-3 py-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-full text-xs font-semibold uppercase tracking-widest">
+                Professional Vocabulary
+            </span>
+
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-indigo-400 leading-tight">
+                লেখায় প্রফেশনাল ভাব আনতে প্রয়োজনীয় ১০০ শব্দ
+            </h1>
+
+            <div class="text-xs sm:text-sm text-slate-400 space-y-1">
+                <p>© Copyright By Achilice Barnad দাদা</p>
+                <p class="font-semibold text-indigo-400 text-sm">Made By Araf Hasan Jheel™</p>
+            </div>
+
+            <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed pt-2">
+                সাধারণ শব্দের জায়গায় কোন প্রফেশনাল শব্দ ব্যবহার করবেন তার তালিকা। প্রয়োজন অনুযায়ী খুঁজে নিয়ে আপনার দৈনন্দিন লেখা ও ইমেইলে ব্যবহার করুন।
+            </p>
+
+            <!-- Demo Box -->
+            <div class="bg-slate-900/80 border border-slate-700/60 rounded-2xl p-4 sm:p-5 text-left text-xs sm:text-sm space-y-2 mt-4">
+                <div class="flex items-center space-x-2">
+                    <span class="bg-rose-500/20 text-rose-400 font-semibold px-2 py-0.5 rounded text-[11px]">সাধারণ</span>
+                    <p class="text-slate-300">Many measures are <s class="text-slate-500">necessary</s> to control this problem.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="bg-emerald-500/20 text-emerald-400 font-semibold px-2 py-0.5 rounded text-[11px]">প্রফেশনাল</span>
+                    <p class="text-slate-200 font-medium">Controlling this problem <span class="text-emerald-400 font-bold underline">necessitates</span> many measures.</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="bg-indigo-500/20 text-indigo-400 font-semibold px-2 py-0.5 rounded text-[11px]">অথবা</span>
+                    <p class="text-slate-200 font-medium">Controlling this problem <span class="text-indigo-400 font-bold underline">requires</span> many measures.</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="glass-card rounded-2xl p-4 space-y-3">
+            <div class="relative">
+                <input type="text" id="searchInput" placeholder="শব্দ, ইংরেজি শব্দ বা অর্থ দিয়ে খুঁজুন..." class="glass-input w-full px-4 py-3.5 pl-11 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm sm:text-base transition">
+                <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1 text-xs sm:text-sm">
+                <button onclick="filterCategory('all')" class="cat-btn bg-indigo-600 text-white px-3.5 py-1.5 rounded-lg transition font-medium">সব শব্দ</button>
+                <button onclick="filterCategory('business')" class="cat-btn bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-lg transition">Business</button>
+                <button onclick="filterCategory('editorial')" class="cat-btn bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-lg transition">Editorial</button>
+                <button onclick="filterCategory('formal')" class="cat-btn bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-lg transition">Formal Email</button>
+            </div>
+        </div>
+
+        <!-- Words List Container -->
+        <main id="wordContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4"></main>
+
+        <div id="noResults" class="hidden text-center py-12 glass-card rounded-2xl">
+            <p class="text-slate-400 text-base">কোনো শব্দ পাওয়া যায়নি।</p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center py-6 text-slate-400 text-xs sm:text-sm glass-card rounded-2xl space-y-1">
+            <p>এত শব্দ একসাথে মনে রাখা কষ্টকর। নিয়মিত ইমেইল ও লেখায় ব্যবহার করার চেষ্টা করুন।</p>
+            <p class="text-slate-500 text-[11px]">Made By Araf Hasan Jheel™</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wordsData = [
+            { id: 1, category: 'editorial', normal: 'Necessary (প্রয়োজনীয়)', pro: 'Necessitate / Require', meaning: 'প্রয়োজন হওয়া বা দরকার হওয়া', example: 'Controlling this problem necessitates immediate action.' },
+            { id: 2, category: 'business', normal: 'Help (সাহায্য করা)', pro: 'Facilitate / Assist', meaning: 'সহজতর করা বা সহায়তা করা', example: 'The new software will facilitate faster communication.' },
+            { id: 3, category: 'formal', normal: 'Buy (কেনা)', pro: 'Procure / Purchase', meaning: 'সংগ্রহ করা বা ক্রয় করা', example: 'The department plans to procure new hardware next month.' },
+            { id: 4, category: 'business', normal: 'Start (শুরু করা)', pro: 'Initiate / Commence', meaning: 'সূচনা বা আরম্ভ করা', example: 'We will initiate the project meeting tomorrow at 10 AM.' },
+            { id: 5, category: 'editorial', normal: 'Show (দেখানো/প্রকাশ করা)', pro: 'Demonstrate / Exhibit', meaning: 'প্রদর্শন বা প্রমাণ করা', example: 'The quarterly report demonstrates significant improvement.' },
+            { id: 6, category: 'formal', normal: 'Stop (বন্ধ করা)', pro: 'Cease / Terminate', meaning: 'স্থগিত বা সমাপ্ত করা', example: 'They decided to cease operations until further notice.' },
+            { id: 7, category: 'editorial', normal: 'Change (পরিবর্তন করা)', pro: 'Alter / Modify', meaning: 'পরিমার্জন বা পরিবর্তন করা', example: 'We may need to modify the strategic plan based on feedback.' },
+            { id: 8, category: 'business', normal: 'Use (ব্যবহার করা)', pro: 'Utilize / Leverage', meaning: 'সঠিক সদ্ব্যবহার করা', example: 'We should leverage our existing resources effectively.' },
+            { id: 9, category: 'formal', normal: 'Tell / Give details (বলা)', pro: 'Elaborate / Disclose', meaning: 'বিস্তারিত ব্যাখ্যা করা', example: 'Could you please elaborate on your proposed timeline?' },
+            { id: 10, category: 'editorial', normal: 'Make better (উন্নত করা)', pro: 'Enhance / Ameliorate', meaning: 'বৃদ্ধি বা উন্নত করা', example: 'The training session will enhance overall work productivity.' },
+            { id: 11, category: 'business', normal: 'Fix (সমাধান করা)', pro: 'Rectify / Resolve', meaning: 'সংশোধন বা সমাধান করা', example: 'Our team will rectify the system error promptly.' },
+            { id: 12, category: 'formal', normal: 'Give (দেওয়া)', pro: 'Provide / Allocate', meaning: 'সরবরাহ বা বরাদ্দ করা', example: 'Management allocated sufficient funds for research.' }
+        ];
+
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        function renderWords() {
+            const container = document.getElementById('wordContainer');
+            const noResults = document.getElementById('noResults');
+            container.innerHTML = '';
+
+            const filtered = wordsData.filter(w => {
+                const matchesCategory = currentCategory === 'all' || w.category === currentCategory;
+                const matchesSearch = w.normal.toLowerCase().includes(searchQuery) ||
+                                      w.pro.toLowerCase().includes(searchQuery) ||
+                                      w.meaning.toLowerCase().includes(searchQuery) ||
+                                      w.example.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-2xl p-5 space-y-3 relative group hover:border-indigo-500/50 transition duration-300";
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-semibold border border-indigo-500/30">
+                            ${item.category}
+                        </span>
+                        <button onclick="copyToClipboard('${item.pro}')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700 transition">
+                            📋 কপি
+                        </button>
+                    </div>
+                    <div>
+                        <div class="text-xs text-rose-400 font-medium line-through">${item.normal}</div>
+                        <div class="text-lg font-bold text-emerald-400">${item.pro}</div>
+                        <div class="text-xs text-slate-400 mt-0.5">${item.meaning}</div>
+                    </div>
+                    <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 italic">
+                        "${item.example}"
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+            event.target.classList.remove('bg-slate-800', 'text-slate-300');
+            event.target.classList.add('bg-indigo-600', 'text-white');
+            renderWords();
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            renderWords();
+        });
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = `"${text}" কপি করা হয়েছে!`;
+            toast.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+            }, 2000);
+        }
+
+        renderWords();
+    </script>
+</body>
+</html>
